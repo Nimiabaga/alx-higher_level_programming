@@ -3,7 +3,7 @@ import random
 
 number = random.randint(-10000, 10000)
 
-last_digit = abs(number) % 10  # Get the last digit, considering negative numbers
+last_digit = abs(number) % 10
 
 print("Last digit of {} is {} and is".format(number, last_digit), end=" ")
 
@@ -13,4 +13,3 @@ elif last_digit == 0:
     print("0")
 else:
     print("less than 6 and not 0")
-    
