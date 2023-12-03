@@ -1,71 +1,73 @@
 #include "lists.h"
 
 /**
- * moveback_listint - Func moves a list back
- * @head: Head
+ * reverse_listint - Reverses a linked list
+ * @head: Pointer to the head of the list
  *
- * Return: Ptr to node
+ * Return: Pointer to the new head of the reversed list
  */
-void moveback_listint(listint_t **head)
+void reverse_listint(listint_t **head)
 {
-	listint_t *prev = NULL;
-	listint_t *new = *head;
-	listint_t *next = NULL;
+	listint_t *previous = NULL;
+	listint_t *current = *head;
+	listint_t *next_node = NULL;
 
-	while (new)
+	while (current)
 	{
-		next = new->next;
-		new->next = prev;
-		prev = new;
-		new = next;
+		next_node = current->next;
+		current->next = previous;
+		previous = current;
+		current = next_node;
 	}
 
-	*head = prev;
+	*head = previous;
 }
 
 /**
- * is_palindrome - Func checks list is palindrome
- * @head: Head
+ * is_palindrome - Checks if a linked list is a palindrome
+ * @head: Pointer to the head of the list
  *
- * Return: 1 if it is palindrome, 0 if otherwise
+ * Return: 1 if it is a palindrome, 0 otherwise
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *u = *head, *v = *head, *shrt = *head;
-	listint_t *cpy = NULL;
+	listint_t *slow = *head, *fast = *head, *second_half = *head;
+	listint_t *copy = NULL;
 
 	if (*head == NULL || (*head)->next == NULL)
 		return (1);
 
 	while (1)
 	{
-		v = v->next->next;
-		if (!v)
+		fast = fast->next->next;
+		if (!fast)
 		{
-			cpy = u->next;
+			copy = slow->next;
 			break;
 		}
-		if (!v->next)
+		if (!fast->next)
 		{
-			cpy = u->next->next;
+			copy = slow->next->next;
 			break;
 		}
-		u = u->next;
+		slow = slow->next;
 	}
-	moveback_listint(&cpy);
 
-	while (cpy && shrt)
+	reverse_listint(&copy);
+
+	while (copy && second_half)
 	{
-		if (shrt->n == cpy->n)
+		if (second_half->n == copy->n)
 		{
-			cpy = cpy->next;
-			shrt = shrt->next;
+			copy = copy->next;
+			second_half = second_half->next;
 		}
 		else
 			return (0);
 	}
 
-	if (!cpy)
+	if (!copy)
 		return (1);
 	return (0);
 }
+
