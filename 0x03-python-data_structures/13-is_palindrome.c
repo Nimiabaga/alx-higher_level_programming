@@ -1,10 +1,66 @@
 #include "lists.h"
+int is_palindrome(listint_t **head);
+
 
 /**
- * reverse_listint - Reverses a linked list
- * @head: Pointer to the head of the list
+ * is_palindrome - Checks if a linked list is a palindrome.
+ * @head: Pointer to the head of the list.
  *
- * Return: Pointer to the new head of the reversed list
+ * Return: 1 if the list is a palindrome, 0 otherwise.
+ */
+int is_palindrome(listint_t **head)
+{
+	listint_t *runner = *head, *walker = *head, *second_half = *head;
+	listint_t *reversed_half = NULL;
+
+	/* Check for empty list or single-node list (palindrome) */
+	if (*head == NULL || (*head)->next == NULL)
+		return (1);
+
+	/* Move runner to the end and walker to the middle of the list */
+	while (1)
+	{
+		runner = runner->next->next;
+		if (!runner)
+		{
+			reversed_half = walker->next;
+			break;
+		}
+		if (!runner->next)
+		{
+			reversed_half = walker->next->next;
+			break;
+		}
+		walker = walker->next;
+	}
+
+	/* Reverse the second half of the list */
+	moveback_listint(&reversed_half);
+
+	/* Compare the first and reversed second half of the list */
+	while (reversed_half && second_half)
+	{
+		if (second_half->n == reversed_half->n)
+		{
+			reversed_half = reversed_half->next;
+			second_half = second_half->next;
+		}
+		else
+			return (0);
+	}
+
+	/* If reversed_half is NULL, the list is a palindrome */
+	if (!reversed_half)
+		return (1);
+
+	return (0);
+}
+
+/**
+ * reverse_listint - Reverses the direction of a linked list.
+ * @head: Pointer to the head of the list.
+ *
+ * Return: Pointer to the new head of the reversed list.
  */
 void reverse_listint(listint_t **head)
 {
@@ -22,52 +78,3 @@ void reverse_listint(listint_t **head)
 
 	*head = previous;
 }
-
-/**
- * is_palindrome - Checks if a linked list is a palindrome
- * @head: Pointer to the head of the list
- *
- * Return: 1 if it is a palindrome, 0 otherwise
- */
-int is_palindrome(listint_t **head)
-{
-	listint_t *slow = *head, *fast = *head, *second_half = *head;
-	listint_t *copy = NULL;
-
-	if (*head == NULL || (*head)->next == NULL)
-		return (1);
-
-	while (1)
-	{
-		fast = fast->next->next;
-		if (!fast)
-		{
-			copy = slow->next;
-			break;
-		}
-		if (!fast->next)
-		{
-			copy = slow->next->next;
-			break;
-		}
-		slow = slow->next;
-	}
-
-	reverse_listint(&copy);
-
-	while (copy && second_half)
-	{
-		if (second_half->n == copy->n)
-		{
-			copy = copy->next;
-			second_half = second_half->next;
-		}
-		else
-			return (0);
-	}
-
-	if (!copy)
-		return (1);
-	return (0);
-}
-
