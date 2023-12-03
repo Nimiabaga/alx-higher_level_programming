@@ -34,3 +34,26 @@ int is_palindrome(listint_t **head)
 
 	return (1);
 }
+
+/**
+ * reverse_listint - Reverses a linked list
+ * @head: Pointer to the head of the list
+ *
+ * Return: Pointer to the new head of the reversed list
+ */
+void reverse_listint(listint_t **head)
+{
+	listint_t *previous = NULL;
+	listint_t *current = *head;
+	listint_t *next_node = NULL;
+
+	while (current)
+	{
+		next_node = current->next;
+		current->next = previous;
+		previous = current;
+		current = next_node;
+	}
+
+	*head = previous;
+}
