@@ -48,6 +48,6 @@ void print_python_list(PyObject *p)
 		obj = (list->ob_item[u])->ob_type->tp_name;
 		printf("Element %i: %s\n", next, obj);
 		if (!strcmp(obj, "bytes"))
-			print_python_bytes(list->ob_item[u]);
+			print_python_bytes(list->ob_item[next]);
 	}
 }
