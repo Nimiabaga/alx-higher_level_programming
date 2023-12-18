@@ -62,4 +62,44 @@ void print_python_bytes(PyObject *obj)
 			index++;
 		}
 
-		printf("\
+		printf("\n");
+	}
+}
+
+/**
+ * print_python_list - Print information about a Python list object
+ * @obj: PyObject pointer representing a Python list
+ */
+void print_python_list(PyObject *obj)
+{
+	Py_ssize_t length = 0;
+	PyObject *list_item;
+	int index = 0;
+
+	fflush(stdout);
+	printf("[*] Python list info\n");
+
+	if (PyList_CheckExact(obj))
+	{
+		length = PyList_GET_SIZE(obj);
+		printf("[*] Size of the Python List = %zd\n", length);
+		printf("[*] Allocated = %lu\n", ((PyListObject *)obj)->allocated);
+
+		while (index < length)
+		{
+			list_item = PyList_GET_ITEM(obj, index);
+			printf("Element %d: %s\n", index, list_item->ob_type->tp_name);
+
+			if (PyBytes_Check(list_item))
+				print_python_bytes(list_item);
+			else if (PyFloat_Check(list_item))
+				print_python_float(list_item);
+
+			index++;
+		}
+	}
+	else
+	{
+		printf("  [ERROR] Invalid List Object\n");
+	}
+}
