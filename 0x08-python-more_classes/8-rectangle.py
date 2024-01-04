@@ -41,7 +41,7 @@ class Rectangle:
 
     def area(self):
         """Return area"""
-        return self.__width * self.__height
+        return (self.__width * self.__height)
 
     def perimeter(self):
         """Return perimeter"""
@@ -54,3 +54,31 @@ class Rectangle:
         """returns the biggest rectangle based on the area"""
         if not isinstance(rect_1, Rectangle):
             raise TypeError("rect_1 must be an instance of Rectangle")
+        if not isinstance(rect_2, Rectangle):
+            raise TypeError("rect_2 must be an instance of Rectangle")
+        if rect_1.area() >= rect_2.area():
+            return rect_1
+        return rect_2
+
+    def __str__(self):
+        """rectangle representation with the # character"""
+        if self.__width == 0 or self.__height == 0:
+            return ("")
+
+        rec = []
+        for u in range(self.__height):
+            [rec.append(str(self.print_symbol)) for v in range(self.__width)]
+            if u != self.__height - 1:
+                rec.append("\n")
+        return ("".join(rec))
+
+    def __repr__(self):
+        """Return str"""
+        rec = "Rectangle(" + str(self.__width)
+        rec += ", " + str(self.__height) + ")"
+        return rec
+
+    def __del__(self):
+        """delete rectangle/print message"""
+        type(self).number_of_instances -= 1
+        print("Bye rectangle...")
