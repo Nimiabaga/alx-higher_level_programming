@@ -1,9 +1,14 @@
 #!/usr/bin/python3
+"""class Rectangle that defines a rectangle"""
+
 
 class Rectangle:
+    """class rectangle"""
+
     def __init__(self, width=0, height=0):
-        self.width = width
-        self.height = height
+        """initialize rectangle"""
+        self.__width = width
+        self.__height = height
 
     @property
     def width(self):
@@ -11,11 +16,14 @@ class Rectangle:
 
     @width.setter
     def width(self, value):
-        if not isinstance(value, int):
-            raise TypeError("width must be an integer")
-        elif value < 0:
-            raise ValueError("width must be >= 0")
+        """put width"""
         self.__width = value
+        try:
+            assert type(self.__width) == int
+        except BaseException:
+            raise TypeError("width must be an integer")
+        if self.__width < 0:
+            raise ValueError("width must be >= 0")
 
     @property
     def height(self):
@@ -23,25 +31,38 @@ class Rectangle:
 
     @height.setter
     def height(self, value):
-        if not isinstance(value, int):
-            raise TypeError("height must be an integer")
-        elif value < 0:
-            raise ValueError("height must be >= 0")
+        """put height"""
         self.__height = value
+        try:
+            assert type(self.__height) == int
+        except BaseException:
+            raise ValueError("height must be >= 0")
 
     def area(self):
+        """Return area"""
         return self.__width * self.__height
 
     def perimeter(self):
-        return 2 * (self.__width + self.__height) if self.__width != 0 and self.__height != 0 else 0
+        """Return perimeter"""
+        if self.__height == 0 or self.__width == 0:
+            return 0
+        return self.__width * 2 + self.__height * 2
 
     def __str__(self):
-        if self.__width == 0 or self.__height == 0:
+        """rectangle representation with the # character"""
+        if self.__width == 0 or self. __height == 0:
             return ""
-        return "\n".join(["#" * self.__width for _ in range(self.__height)])
+        for u in range(self.__height):
+            for v in range(self.__width):
+                print("#", end="")
+            print()
+        return ""
 
     def __repr__(self):
-        return "Rectangle({}, {})".format(self.__width, self.__height)
+        rec = "Rectangle(" + str(self.__width)
+        rec += ", " + str(self.__height) + ")"
+        return rec
 
     def __del__(self):
+        """delete rectangle/print message"""
         print("Bye rectangle...")
