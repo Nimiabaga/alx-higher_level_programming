@@ -12,4 +12,3 @@ def print_square(size):
     for u in range(size):
         [print("#", end="") for v in range(size)]
         print("")
-    
