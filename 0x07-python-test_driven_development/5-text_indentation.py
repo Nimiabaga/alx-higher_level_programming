@@ -14,8 +14,6 @@ def text_indentation(text):
         if char in ".?:":
             print("\n\n", end="")
             indentation_level = 0
-        elif char == "\n":
-            indentation_level = 0
         elif char == " ":
             indentation_level += 1
         else:
