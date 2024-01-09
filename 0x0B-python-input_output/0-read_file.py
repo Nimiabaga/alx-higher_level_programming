@@ -1,16 +1,8 @@
 #!/usr/bin/python3
-"""Module 1-write_file.
-Writes in a text file.
-"""
+"""func reads a text file (UTF8) and prints it to stdout"""
 
 
-def write_file(filename="", text=""):
-    """Writes text in filename.
-    Args:
-        - filename: name of the file
-        - text: string to write in the file
-    Returns: number of characters written
-    """
-
-    with open(filename, 'w+') as f:
-        return f.write(text)
+def read_file(filename=""):
+    """Prints the content to stdout"""
+    with open(filename, encoding="utf-8") as f:
+        print(f.read(), end="")
