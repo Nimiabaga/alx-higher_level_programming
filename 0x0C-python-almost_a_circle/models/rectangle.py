@@ -134,4 +134,3 @@ class Rectangle(Base):
         """return format for string/print representation"""
         return f"[Rectangle] ({self.id}) {self.__x}/{self.__y} - \
 {self.__width}/{self.__height}"
-
