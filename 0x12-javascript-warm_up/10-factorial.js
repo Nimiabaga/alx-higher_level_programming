@@ -10,4 +10,3 @@ function factorial (n) {
   }
   
   console.log(factorial(Number.parseInt(process.argv[2])));
-  
