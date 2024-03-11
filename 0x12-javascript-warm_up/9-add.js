@@ -7,4 +7,4 @@ function add (a, b) {
 
 console.log(
   add(Number.parseInt(process.argv[2]), Number.parseInt(process.argv[3]))
-);
+)
