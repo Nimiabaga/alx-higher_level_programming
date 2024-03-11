@@ -10,4 +10,3 @@ if (process.argv.length <= 3) {
     const next = ar.sort(function (a, b) { return b - a; })[1];
     console.log(next);
   }
-  
