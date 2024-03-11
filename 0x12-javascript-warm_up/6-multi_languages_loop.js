@@ -1,7 +1,7 @@
 #!/usr/bin/node
 
-const languages = ["C is fun", "Python is cool", "JavaScript is amazing"];
+// Array of strings to print
+const txt = ['C is fun', 'Python is cool', 'JavaScript is amazing'];
 
-for (const language of languages) {
-  console.log(language);
-}
+// Loop through each element of the array and print it
+for (let u = 0; u < txt.length; u++) { console.log(txt[u]); }
