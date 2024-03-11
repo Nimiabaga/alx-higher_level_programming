@@ -1,4 +1,5 @@
 #!/usr/bin/node
+
 function factorial (n) {
     // if 'n' is NaN or less than or equal to 0, return 1
     if (Number.isNaN(n) || (n <= 0)) {
