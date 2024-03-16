@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 """Lists all cities of a specific state from the database hbtn_0e_4_usa"""
 
