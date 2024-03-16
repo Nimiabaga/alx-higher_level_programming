@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 """State class and Base instance"""
 
