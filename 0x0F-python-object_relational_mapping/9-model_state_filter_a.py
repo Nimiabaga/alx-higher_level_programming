@@ -31,4 +31,4 @@ if __name__ == '__main__':
 
         """Display results"""
         for st in res:
-            print('{}: {}'.format(st.id, st.name)
+            print('{}: {}'.format(st.id, st.name))
