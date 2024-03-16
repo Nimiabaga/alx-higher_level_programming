@@ -22,4 +22,4 @@ if __name__ == "__main__":
     print(', '.join(map(lambda x: x[0], rows)))
 
     cur.close()
-    conn.close()
+    conn.close(
