@@ -23,4 +23,4 @@ if __name__ == "__main__":
         print(res)
 
     cur.close()
-    conn.close()
+    conn.close(
