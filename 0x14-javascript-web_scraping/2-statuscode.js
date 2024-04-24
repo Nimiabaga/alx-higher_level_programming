@@ -1,4 +1,3 @@
-
 #!/usr/bin/node
 // Make a GET request
 const request = require('request');
